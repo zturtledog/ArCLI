@@ -1,0 +1,1 @@
+{"plugins":[],"library":[],"callorder":[{"name":"test/hwad","type":"amyth","fdir":"test/hwad.amyth","data":"fnc()\r\n\r\nint fnc() {\r\n    for 24, i {\r\n        print(\"Hello, World!\")\r\n    }\r\n}"}]}

@@ -1,0 +1,7 @@
+fnc()
+
+int fnc() {
+    for 24, i {
+        print("Hello, World!")
+    }
+}

@@ -1,0 +1,13 @@
+def: num $times 23          #define times
+def: num $i 0               #define loop iterator
+
+:loop                       
+    add: $i 1               #increment iterator
+    log: "hello world"      #call macro, log
+    jge: $i $times :loop    #jump to loop if greater than or equal to
+
+dlt $i                      #delete iterator
+
+@log (str %val)             #define macro, log
+    sys: print %val         #call std::print
+end
