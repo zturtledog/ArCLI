@@ -2,6 +2,10 @@ fnc()
 
 int fnc() {
     for 24, i {
-        print("Hello, World!")
+        log!("Hello, World!")
     }
+}
+
+let log(string val) !{
+    sys: print %val         #call std::print
 }

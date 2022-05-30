@@ -1,5 +1,5 @@
 export function error(title, message) {
-    console.log(typeof message)
+    // console.log(typeof message)
     message = message.replaceAll("\n", "\n    ")
 
     {//colorize
@@ -34,7 +34,7 @@ export function error(title, message) {
         message = endpoint;
     }
 
-    console.error("\x1b[1m\x1b[31m" + title + "\x1b[0m\n  " + message + "\x1b[0")
+    console.error("\x1b[1m\x1b[31m" + title + "\x1b[0m\n  " + message + "\x1b[0m")
 }
 
 export function iiil(l, c) {

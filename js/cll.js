@@ -5,7 +5,7 @@ export function usecll(file, outfile) {
     try {
         data = Deno.readTextFileSync(file).split("\r\n");
     } catch (flerror) {
-        error("cll \x1b[0m\x1b[30'"+file+"'\x1b[1m\x1b[31m failed to read",flerror.toString())
+        error("cll \x1b[0m\x1b[30m'"+file+"'\x1b[1m\x1b[31m failed to read",flerror.toString())
         Deno.exit()
     }
     
