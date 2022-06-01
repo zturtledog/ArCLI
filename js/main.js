@@ -1,4 +1,4 @@
-import * as cll from "./cll.js"
+import {usecll} from "./cll.js"
 import {error, mkdir} from "./libs/shared.js"
 
 //import languages
@@ -7,10 +7,17 @@ import * as amethyst from "./langs/amethyst.js"
 
 //register languages
 
-let langs = []
-langs.push(amethyst.register())
+let langs = {
+    ext:{},
+    regis:[]
+}
+
+rlang(amethyst.register())
 
 //flags
+
+let quiet = argsget("-q",true);
+let makegarbage = !argsget("-ng",true);
 
 if (Deno.args[0] == "help") {
     console.log([
@@ -30,7 +37,7 @@ if (Deno.args[0] == "new") {
     try {
         Deno.writeTextFileSync("./readme.md", "");
         Deno.writeTextFileSync("./settings.json", "");
-        Deno.writeTextFileSync("package.cll", "package ./actial/main.ion\n");
+        Deno.writeTextFileSync("./package.cll", "package ./actial/main.ion\n");
         Deno.mkdirSync("./actial");
         Deno.writeTextFileSync("./actial/main.ion", "sys: print 'Hello, World!'");
         Deno.mkdirSync(argsget("-w") || "./workspace");
@@ -38,7 +45,12 @@ if (Deno.args[0] == "new") {
     } catch(e) {
         error("Internal Error",e.toString())
     }
+    Deno.exit()
 }
+
+//cll
+
+let cllout = usecll(Deno.args[0])
 
 //helpers
 
@@ -52,39 +64,19 @@ function argsget(f,rt) {
     return false
 }
 
+function rlang(obj) {
+    for (let i = 0; i < obj.alias.length; i++) {
+        langs.ext[obj.alias[i]] = langs.regis.length
+    }
+    langs.regis.push(obj)
+}
 
 
 
 
 
 
-// let quiet = false;
-// let makegarbage = true;
 
-// if (Deno.args[0] == "help") {
-//     console.log(
-//         [
-//             "\x1b[34mpatch: \x1b[0m\x1b[3m\x1b[33moutputs the workspace as a bxc file\x1b[0m",
-//             "\x1b[34mhelp: \x1b[0m\x1b[3m\x1b[33mprints this page\x1b[0m\n",
-//             "-------------------------------------------------------------------------------------------------------------\n",
-//             "\x1b[34m-q: \x1b[0m\x1b[3m\x1b[33msilences the status messages\x1b[0m",
-//             "\x1b[34m-o: \x1b[0m\x1b[3m\x1b[33mdefines the output directory\x1b[0m",
-//             "\x1b[34m-w: \x1b[0m\x1b[3m\x1b[33mdefines the working directory\x1b[0m",
-//             "\x1b[34m-ng: \x1b[0m\x1b[3m\x1b[33mstops the prosses from creating lots of internal files in the working directory\x1b[0m\n",
-//             "-------------------------------------------------------------------------------------------------------------\n",
-//         ].join("\n")+"\x1b[0m"
-//     )
-
-//     Deno.exit()
-// }
-
-// if (Deno.args[0] != "patch") {
-//     error("Invalid action","'"+Deno.args[0]+"' is not a valid action, run 'help' for assistence.");
-//     Deno.exit()
-// }
-
-// quiet = argsget("-q",true);
-// makegarbage = !argsget("-ng",true);
 
 // if (argsget("-w",true)) {
 //     try {

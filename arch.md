@@ -33,15 +33,15 @@ inder
   |-package.cll
   \-actial
     |-hwalld.amethyst
-  \-workplace  (won't generate if -ng)
+  \-workplace  (won't generate some if -ng)
     |-cllstack.json
     |-nmsp.json
     |-cllout.json
     \-namespaces
-      |-global.nmsp  (can also be a .bxc file)
+      |-global.nmsp
   \-out
     |-cstack.vios
-    \-dlion
+    \-dlion  (contains a list of .bxc files)
 
 ## details
 
@@ -90,4 +90,32 @@ output to file list for compilation
     code: []
 }
 
+```
+
+## psudocode
+
+```js
+usecll()
+for (list)
+    parse(file) && metadata
+    for (namespaces in result)
+        list.add(namespaces)
+    stitch(code && functions) -> module
+    mlist.add(module)
+stitch(modules) -> file
+if (! -ng)
+    output(file)
+new list<namespaces>()
+for (namespaces)
+    if (in list)
+        ils[i].add(data)
+    else
+        ils.add(new index)
+for (modules) {in new branch()}
+    check(usage, for(functions, -> i)) 
+    check(namespaces)
+    mark(namespaces ? used) 
+    remove(functions ? unused)
+    clear(errors)
+remove(namespaces ? unused)
 ```
