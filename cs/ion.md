@@ -28,7 +28,6 @@ cll: <obj> <macro> <parameters>     call a macro on the obj
 
 <!-- external -->
 
-!
 !import <dll> <name>            import a dll into the standard library as an obj
 
 ## macros

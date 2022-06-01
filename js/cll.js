@@ -67,7 +67,7 @@ export function usecll(file, outfile) {
             Deno.writeTextFileSync(outfile, JSON.stringify(out));
         } catch (flerror) {
             error(
-                "\x1b[31mplugin \x1b[30m'"+back[1]+"' \x1b[31mfailed to output to directory",
+                "Cll could not output itself to: \x1b[30m'"+outfile+"'\x1b[31m",
                 flerror.toString()
             )
         }

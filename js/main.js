@@ -5,15 +5,6 @@ import {error, mkdir} from "./libs/shared.js"
 
 import * as amethyst from "./langs/amethyst.js"
 
-//register languages
-
-let langs = {
-    ext:{},
-    regis:[]
-}
-
-rlang(amethyst.register())
-
 //flags
 
 let quiet = argsget("-q",true);
@@ -22,13 +13,14 @@ let makegarbage = !argsget("-ng",true);
 if (Deno.args[0] == "help") {
     console.log([
         "\x1b[1m\x1b[30mformat: \x1b[31m<cll>... [flags]",
-        "-------------------------------------------------------------------------------------------------------------\n",
+        "\x1b[1m\x1b[32m-------------------------------------------------------------------------------------------------------------\n",
         "\x1b[1m\x1b[34mhelp: \x1b[0m\x1b[3m\x1b[33mprints this message\x1b[0m",
-        "\x1b[1m\x1b[34m-------------------------------------------------------------------------------------------------------------\n",
-        "-ng: \x1b[0m\x1b[3m\x1b[33mstops the packager from creating garbage internal files in the workspace\x1b[0m",
-        "\x1b[1m\x1b[34m-w: \x1b[0m\x1b[3m\x1b[33mdefines the workspace directory\x1b[0m",
-        "\x1b[1m\x1b[34m-q: \x1b[0m\x1b[3m\x1b[33msilences the packager from the console\x1b[0m",
-        "\x1b[1m\x1b[34m-o: \x1b[0m\x1b[3m\x1b[33mdefines the output directory\x1b[0m\n",
+        "\x1b[1m\x1b[34mnew: \x1b[0m\x1b[3m\x1b[33mcreates a fresh progect in the working directory\x1b[0m",
+        "\x1b[1m\x1b[32m-------------------------------------------------------------------------------------------------------------\n",
+        "\x1b[1m\x1b[35m-ng: \x1b[0m\x1b[3m\x1b[36mstops the packager from creating garbage internal files in the workspace\x1b[0m",
+        "\x1b[1m\x1b[35m-w: \x1b[0m\x1b[3m\x1b[36mdefines the workspace directory\x1b[0m",
+        "\x1b[1m\x1b[35m-q: \x1b[0m\x1b[3m\x1b[36msilences the packager from the console\x1b[0m",
+        "\x1b[1m\x1b[35m-o: \x1b[0m\x1b[3m\x1b[36mdefines the output directory\x1b[0m\n",
     ].join("\n")+"\x1b[0m")
     Deno.exit()
 } 
@@ -42,15 +34,27 @@ if (Deno.args[0] == "new") {
         Deno.writeTextFileSync("./actial/main.ion", "sys: print 'Hello, World!'");
         Deno.mkdirSync(argsget("-w") || "./workspace");
         Deno.mkdirSync(argsget("-o") || "./output");
+        console.log("\x1b[32mSucsess\x1b[0m")
     } catch(e) {
-        error("Internal Error",e.toString())
+        error("Internal Filesystem Error",e.toString())
     }
     Deno.exit()
 }
 
+//register languages
+
+let langs = {
+    ext:{},
+    regis:[]
+}
+
+rlang(amethyst.register())
+
 //cll
 
-let cllout = usecll(Deno.args[0])
+let cllout = usecll(Deno.args[0],quiet?false:argsget("-w")||"./workplace/cllout.json")
+
+console.log(cllout)
 
 //helpers
 
@@ -65,10 +69,14 @@ function argsget(f,rt) {
 }
 
 function rlang(obj) {
-    for (let i = 0; i < obj.alias.length; i++) {
-        langs.ext[obj.alias[i]] = langs.regis.length
+    try {
+        for (let i = 0; i < obj.alias.length; i++) {
+            langs.ext[obj.alias[i]] = langs.regis.length
+        }
+        langs.regis.push({name:obj.name,toast:obj.toast})
+    }catch (e) {
+        error("Registration Error",e.toString())
     }
-    langs.regis.push(obj)
 }
 
 
