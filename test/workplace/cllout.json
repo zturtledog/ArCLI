@@ -1,1 +1,1 @@
-{"plugins":[],"library":[],"callorder":[{"name":"test/hwad","type":"amyth","fdir":"test/hwad.amyth","data":"fnc()\r\n\r\nint fnc() {\r\n    for 24, i {\r\n        log!(\"Hello, World!\")\r\n    }\r\n}\r\n\r\nlet log(string val) !{\r\n    sys: print %val         #call std::print\r\n}"}]}
+{"plugins":[],"library":[],"callorder":[{"name":"test/hwad","type":"amyth","fdir":"test/hwad.amyth","data":"fnc()\r\n\r\nint fnc() {\r\n    for 24, i {\r\n        log!(\"Hello, World!\")\r\n    }\r\n}\r\n\r\n(log) -> string val !{\r\n    sys: print %val         #call std::print\r\n}"}]}

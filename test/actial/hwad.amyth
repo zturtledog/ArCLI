@@ -1,11 +1,11 @@
 fnc()
 
-int fnc() {
+void fnc() {
     for 24, i {
         log!("Hello, World!")
     }
 }
 
-(log) -> string val !{
+(log) -> str %val !{
     sys: print %val         #call std::print
 }

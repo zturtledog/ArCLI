@@ -1,4 +1,4 @@
-import { error} from "./shared.js";
+import { error} from "./libs/shared.js";
 
 export function usecll(file, outfile) {
     let data

@@ -20,9 +20,43 @@ function parse() {
         ],
         private: {
             macro: [
-                {}
+                {
+                    name:"log",
+                    parm:[
+                        {
+                            type:"str",
+                            name:"%val"
+                        }
+                    ],
+                    info:"sys: print %val"
+                }
             ],
-            functions: []
+            functions: [
+                {
+                    name:"fnc",
+                    rtrn:"void",
+                    parm:[],
+                    info:[
+                        {
+                            type:"loop",
+                            time:24,
+                            iter:"i",
+                            info:[
+                                {
+                                    type:"macro",
+                                    name:"log",
+                                    parm:[
+                                        {
+                                            type:"string",
+                                            valu:"Hello, World!"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         code: [
             {

@@ -38,7 +38,7 @@ inder
     |-nmsp.json
     |-cllout.json
     \-namespaces
-      |-global.nmsp
+      |-global.nmsp  (can also be a .bxc file)
   \-out
     |-cstack.vios
     \-dlion
