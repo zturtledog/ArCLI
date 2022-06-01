@@ -6,6 +6,6 @@ int fnc() {
     }
 }
 
-let log(string val) !{
+(log) -> string val !{
     sys: print %val         #call std::print
 }

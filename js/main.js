@@ -13,6 +13,7 @@ langs.push(amethyst.register())
 //do other things
 
 let quiet = false;
+let makegarbage = true;
 
 if (Deno.args[0] == "help") {
     console.log(
@@ -36,13 +37,22 @@ if (Deno.args[0] != "patch") {
     Deno.exit()
 }
 
-if (argsget("-q",true)) {
-    quiet = true
+quiet = argsget("-q",true);
+makegarbage = !argsget("-ng",true);
+
+if (argsget("-w",true)) {
+    try {
+        Deno.mkdirSync(argsget("-w")+"namespaces");
+    } catch(e) {
+        if (!((e+"").split(":")[0] == "AlreadyExists")) {
+            error("Internal Error",e.toString())
+        }
+    }
 }
 
 //prosses cll
 
-let cllout = cll.usecll(Deno.args[1],argsget("-w") ? argsget("-w")+"cllout.json" : false)
+let cllout = cll.usecll(Deno.args[1],(argsget("-w") && makegarbage) ? argsget("-w")+"cllout.json" : false)
 
 function argsget(f,rt) {
     for (let i = 2; i < Deno.args.length; i++) {
@@ -84,4 +94,7 @@ for (let i = 0; i < cllout.callorder.length; i++) {
     }
 }
 cllout.callorder = callorder
-console.log(cllout)
+
+// stich namespace
+
+//
