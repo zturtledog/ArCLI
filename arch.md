@@ -8,11 +8,11 @@ infile
 |
 |______- context (main.js)
 |  |  |
-|--|--|- parse  (./langs/*.js)
+|--|--|- parse  (./langs/*.js && main.js)
 |  |  |
 |--|-_/- stitch namespace && compile main call line  (namespace.js)
 |  |
-|--|- compile macros (macro.js && macromedia.js)
+|--|- compile macros (macro.js)
 |  |
 |--|- output  [not if -ng] (main.js)
 |  |

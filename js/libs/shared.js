@@ -84,3 +84,13 @@ export function formatjson(jsn) {
     data = end.split("\n,").join(",");
     return data;
 }
+
+export function mkdir(name) {
+    try {
+        Deno.mkdirSync(name);
+    } catch(e) {
+        if (!((e+"").split(":")[0] == "AlreadyExists")) {
+            error("Internal Error",e.toString())
+        }
+    }
+}

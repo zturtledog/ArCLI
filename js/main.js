@@ -1,5 +1,5 @@
 import * as cll from "./cll.js"
-import {error} from "./libs/shared.js"
+import {error, mkdir} from "./libs/shared.js"
 
 //import languages
 
@@ -10,8 +10,35 @@ import * as amethyst from "./langs/amethyst.js"
 let langs = []
 langs.push(amethyst.register())
 
-//
+//flags
 
+if (Deno.args[0] == "help") {
+    console.log([
+        "\x1b[1m\x1b[30mformat: \x1b[31m<cll>... [flags]",
+        "-------------------------------------------------------------------------------------------------------------\n",
+        "\x1b[1m\x1b[34mhelp: \x1b[0m\x1b[3m\x1b[33mprints this message\x1b[0m",
+        "\x1b[1m\x1b[34m-------------------------------------------------------------------------------------------------------------\n",
+        "-ng: \x1b[0m\x1b[3m\x1b[33mstops the packager from creating garbage internal files in the workspace\x1b[0m",
+        "\x1b[1m\x1b[34m-w: \x1b[0m\x1b[3m\x1b[33mdefines the workspace directory\x1b[0m",
+        "\x1b[1m\x1b[34m-q: \x1b[0m\x1b[3m\x1b[33msilences the packager from the console\x1b[0m",
+        "\x1b[1m\x1b[34m-o: \x1b[0m\x1b[3m\x1b[33mdefines the output directory\x1b[0m\n",
+    ].join("\n")+"\x1b[0m")
+    Deno.exit()
+} 
+
+if (Deno.args[0] == "new") {
+    try {
+        Deno.writeTextFileSync("./readme.md", "");
+        Deno.writeTextFileSync("./settings.json", "");
+        Deno.writeTextFileSync("package.cll", "package ./actial/main.ion\n");
+        Deno.mkdirSync("./actial");
+        Deno.writeTextFileSync("./actial/main.ion", "sys: print 'Hello, World!'");
+        Deno.mkdirSync(argsget("-w") || "./workspace");
+        Deno.mkdirSync(argsget("-o") || "./output");
+    } catch(e) {
+        error("Internal Error",e.toString())
+    }
+}
 
 //helpers
 
