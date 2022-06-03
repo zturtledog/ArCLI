@@ -1,5 +1,8 @@
-import {usecll} from "./cll.js"
-import {error, mkdir} from "./libs/shared.js"
+let stime = new Date().getTime()
+
+import { usecll } from "./cll.js"
+import { stitch } from "./namespaces.js"
+import { error, mkdir } from "./libs/shared.js"
 
 //import languages
 
@@ -9,6 +12,7 @@ import * as amethyst from "./langs/amethyst.js"
 
 let quiet = argsget("-q",true);
 let makegarbage = !argsget("-ng",true);
+let workplace = argsget("-w")||"./workplace/"
 
 if (Deno.args[0] == "help") {
     console.log([
@@ -52,9 +56,33 @@ rlang(amethyst.register())
 
 //cll
 
-let cllout = usecll(Deno.args[0],quiet?false:argsget("-w")||"./workplace/cllout.json")
+let cllout = usecll(Deno.args[0],quiet?false:workplace+"cllout.json")
 
-console.log(cllout)
+//associate
+
+let corder = []
+for (const entry of cllout.callorder) {
+    let prse;
+    try {
+        prse = langs.regis[langs.ext[entry.type]].toast(entry.data)
+    } catch (e) {
+        error("Could not parse \x1b[30m'"+entry.fdir+"' \x1b[31mthis is likely due to a nonexistent file or faulty extension",e.toString())
+    }
+    try {
+        corder.push({
+            name:entry.name,
+            fdir:entry.fdir,
+            prse:prse
+        })
+    } catch (e) {
+        error("Could not associate \x1b[30m'"+entry.fdir+"'\x1b[31m with type",e.toString())
+    }
+}
+cllout.callorder = stitch(corder, {
+    mg:makegarbage,
+    dw:workplace,
+})
+// console.log(cllout,new Date().getTime()-stime);
 
 //helpers
 

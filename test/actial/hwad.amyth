@@ -1,5 +1,6 @@
 fnc()
 
+//--prints Hello World 23 times using a macro
 void fnc() {
     for 24, i {
         log!("Hello, World!")
