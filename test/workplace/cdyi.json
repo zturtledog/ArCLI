@@ -1,1 +1,43 @@
-{"plugins":[],"library":[]}
+{
+    "plugins": [],
+    "library": [],
+    "callorder": {
+        "namespaces": {},
+        "calist": [{
+            "location": "./actial/hwad.ion",
+            "locluse": {
+                "functions": []
+            },
+            "actial": [{
+                "type": "macro",
+                "actial": "def: num $times 23          #define times\r\ndef: num $i 0               #define loop iterator\r\n\r\n:loop                       \r\n    add: $i 1               #increment iterator\r\n    log: \"hello world\"      #call macro, log\r\n    jge: $i $times :loop    #jump to loop if greater than or equal to\r\n\r\ndlt $i                      #delete iterator\r\n\r\n@log (str %val)             #define macro, log\r\n    sys: print %val         #call std::print\r\nend"
+            }],
+            "iname": "hwad"
+        }, {
+            "location": "./actial/hwad.amyth",
+            "locluse": {
+                "functions": [{
+                    "name": "fnc",
+                    "rtrn": "void",
+                    "parm": [],
+                    "info": [{
+                        "type": "loop",
+                        "time": 24,
+                        "iter": "i",
+                        "info": [{
+                            "type": "macro",
+                            "actial": "sys: print 'Hello, World!'  #interfaces with the system"
+                        }]
+                    }]
+                }]
+            },
+            "actial": [{
+                "type": "call",
+                "pool": "user",
+                "name": "fnc",
+                "parm": []
+            }],
+            "iname": "hwad"
+        }]
+    }
+}

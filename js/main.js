@@ -8,6 +8,7 @@ import { error, mkdir } from "./libs/shared.js"
 //import languages
 
 import * as amethyst from "./langs/amethyst.js"
+import * as ion from "./langs/ion.js"
 
 //flags
 
@@ -54,6 +55,7 @@ let langs = {
 }
 
 rlang(amethyst.register())
+rlang(ion.register())
 
 //cll
 
@@ -82,11 +84,13 @@ for (const entry of cllout.callorder) {
     if (!quiet)
     console.log("\x1b[1m\x1b[32mParsing\x1b[30m :: \x1b[34m"+entry.fdir+"\x1b[0m")
 }
-cllout.callorder = juc(stitch(corder, {
+cllout.callorder = stitch(corder, {
     mg:makegarbage,
     dw:workplace,
     dq:quiet,
-}),{
+})
+
+juc(cllout,{
     mg:makegarbage,
     dw:workplace,
     dq:quiet,

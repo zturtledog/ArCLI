@@ -83,7 +83,6 @@ output to file list for compilation
         }
     ],
     private:{
-        macro:[],
         functions:[]
     },
     code: []
