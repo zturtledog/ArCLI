@@ -26,5 +26,5 @@ export function stitch(key,set) {
         }
         Deno.writeTextFileSync(set.dw+"cllstack.json",JSON.stringify(mojlist))
     }
-    console.log(nsps,mojlist)
+    return {namespaces: nsps, calist: mojlist}
 }

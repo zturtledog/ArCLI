@@ -23,18 +23,6 @@ function parse() {
             }
         ],
         private: {
-            macro: [
-                {
-                    name:"log",
-                    parm:[
-                        {
-                            type:"str",
-                            name:"%val"
-                        }
-                    ],
-                    info:"sys: print %val"
-                }
-            ],
             functions: [
                 {
                     name:"fnc",
@@ -48,13 +36,7 @@ function parse() {
                             info:[
                                 {
                                     type:"macro",
-                                    name:"log",
-                                    parm:[
-                                        {
-                                            type:"string",
-                                            valu:"Hello, World!"
-                                        }
-                                    ]
+                                    actial:"sys: print 'Hello, World!'  #interfaces with the system"
                                 }
                             ]
                         }

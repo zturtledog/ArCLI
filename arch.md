@@ -12,8 +12,6 @@ infile
 |  |  |
 |--|-_/- stitch namespace && compile main call line  (namespace.js)
 |  |
-|--|- compile macros (macro.js)
-|  |
 |--|- output  [not if -ng] (main.js)
 |  |
 |-_/- check use [branch] (use.js)
