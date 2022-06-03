@@ -2,6 +2,7 @@ let stime = new Date().getTime()
 
 import { usecll } from "./cll.js"
 import { stitch } from "./namespaces.js"
+import { juc } from "./use.js"
 import { error, mkdir } from "./libs/shared.js"
 
 //import languages
@@ -56,7 +57,7 @@ rlang(amethyst.register())
 
 //cll
 
-let cllout = usecll(Deno.args[0],quiet?false:workplace+"cllout.json")
+let cllout = usecll(Deno.args[0],(!makegarbage)?false:workplace+"cllout.json")
 
 //associate
 
@@ -77,17 +78,27 @@ for (const entry of cllout.callorder) {
     } catch (e) {
         error("Could not associate \x1b[30m'"+entry.fdir+"'\x1b[31m with type",e.toString())
     }
+
+    if (!quiet)
+    console.log("\x1b[1m\x1b[32mParsing\x1b[30m :: \x1b[34m"+entry.fdir+"\x1b[0m")
 }
-cllout.callorder = stitch(corder, {
+cllout.callorder = juc(stitch(corder, {
     mg:makegarbage,
     dw:workplace,
+    dq:quiet,
+}),{
+    mg:makegarbage,
+    dw:workplace,
+    dq:quiet,
 })
+
+Deno.writeTextFileSync(workplace+"cdyi.json", JSON.stringify(cllout))
 // console.log(cllout,new Date().getTime()-stime);
 
 //helpers
 
 function argsget(f,rt) {
-    for (let i = 2; i < Deno.args.length; i++) {
+    for (let i = 1; i < Deno.args.length; i++) {
         if (Deno.args[i] == f) {
             if (rt) {return true}
             return Deno.args[i+1];

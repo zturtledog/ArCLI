@@ -32,6 +32,7 @@ inder
   \-actial
     |-hwalld.amethyst
   \-workplace  (won't generate some if -ng)
+    |-cdyi.json (required file)
     |-cllstack.json
     |-nmsp.json
     |-cllout.json

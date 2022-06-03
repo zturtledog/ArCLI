@@ -1,1 +1,0 @@
-[{"location":"./actial/hwad.amyth","locluse":{"functions":[{"name":"fnc","rtrn":"void","parm":[],"info":[{"type":"loop","time":24,"iter":"i","info":[{"type":"macro","actial":"sys: print 'Hello, World!'  #interfaces with the system"}]}]}]},"actial":[{"type":"call","pool":"user","name":"fnc","parm":[]}],"iname":"hwad"}]

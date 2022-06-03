@@ -17,10 +17,10 @@ function parse() {
                 name: "global",
                 content: []
             },
-            {
-                name: "global",
-                content: [""]
-            }
+            // {
+            //     name: "global",
+            //     content: [""]
+            // }
         ],
         private: {
             functions: [
